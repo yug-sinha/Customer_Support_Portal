@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: customer-support-backend
+    env: python
+    region: oregon            # change if needed
+    plan: free                # adjust plan
+    branch: main              # or your default branch
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false           # set in Render dashboard
+      - key: GOOGLE_SHEETS_CREDENTIALS_FILE
+        sync: false
+      - key: GOOGLE_SHEETS_CREDENTIALS_JSON
+        sync: false
+      - key: GOOGLE_SPREADSHEET_ID
+        sync: false
